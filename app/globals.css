@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sand: #f8f0df;
+  --coral: #ff7f50;
+  --coral-dark: #9e4022;
+  --slate: #141720;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Avenir Next", "Segoe UI", "Trebuchet MS", sans-serif;
+  color: var(--slate);
+  background: var(--sand);
+}
+
+.font-heading {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", "Trebuchet MS", sans-serif;
+}
+
+.bg-sand {
+  background: var(--sand);
+}
+
+.bg-coral {
+  background: var(--coral);
+}
+
+.text-coral-dark {
+  color: var(--coral-dark);
+}
+
+.aurora {
+  pointer-events: none;
+  position: absolute;
+  border-radius: 100%;
+  filter: blur(75px);
+  opacity: 0.45;
+}
+
+.aurora-one {
+  height: 26rem;
+  width: 26rem;
+  left: -5rem;
+  top: -7rem;
+  background: #ffbe88;
+}
+
+.aurora-two {
+  height: 30rem;
+  width: 30rem;
+  right: -10rem;
+  top: 18rem;
+  background: #9dd9d2;
+}
+
+.grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image: radial-gradient(#000 0.7px, transparent 0.7px);
+  background-size: 4px 4px;
+}
+
+.shadow-soft {
+  box-shadow: 0 14px 35px rgba(26, 35, 58, 0.12);
+}
+
+.reveal-up {
+  animation: reveal-up 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.delay-1 {
+  animation-delay: 0.15s;
+}
+
+.delay-2 {
+  animation-delay: 0.3s;
+}
+
+.delay-3 {
+  animation-delay: 0.45s;
+}
+
+.schedule-card {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  align-items: center;
+  gap: 0.8rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(20, 23, 32, 0.1);
+  padding: 0.8rem 0.9rem;
+  background: #fefefe;
+}
+
+.schedule-card .time {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  margin: 0;
+}
+
+.schedule-card .label {
+  margin: 0;
+  color: #3f4552;
+  font-size: 0.95rem;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .aurora-one,
+  .aurora-two {
+    opacity: 0.3;
+  }
+}
