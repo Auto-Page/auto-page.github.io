@@ -9,7 +9,7 @@ One-Person Company Platform
 Build a multi-tenant public platform where many real people can register, create accounts, and run their own companies with the support of a coordinated AI workforce. Each user owns one or more company workspaces. The human provides the business goal, idea, constraints, and clarifications when needed. The platform then assigns an AI CEO to lead a team of AI employees across departments such as product, research, engineering, design, marketing, operations, finance, and QA. The AI CEO owns planning, delegation, decision making, review, and final delivery.
 
 ### Core Promise
-The user should be able to say, "Build and operate this business objective for me," and watch an AI-led company execute the work with transparent communication, structured reports, and limited but useful opportunities for human clarification.
+The user should be able to say, "Build and operate this business objective for me," and watch an AI-led company execute the work with transparent communication, structured reports, and limited but useful opportunities for human clarification. User participation in internal AI conversations is optional by default, and the AI CEO is the first-line clarifier for questions raised during execution.
 
 ## 2. Background And Opportunity
 
@@ -156,8 +156,12 @@ The AI CEO:
 The user can:
 - View discussions between the AI CEO and AI employees
 - Inspect plans, tasks, assumptions, and reports
-- Join the conversation to clarify intent or constraints
+- Optionally join the conversation to clarify intent or constraints
 - Approve, pause, redirect, or stop work if desired
+
+Default clarification behavior:
+- The AI CEO handles first-line clarification with AI employees before involving the user.
+- The user is only asked when goals, constraints, or business direction are ambiguous or changed.
 
 ### Step 6: Final Delivery
 The AI CEO returns a consolidated response to the human that may include:
@@ -212,6 +216,7 @@ The user signs up with Google or email, creates a private account, and manages o
 - The AI CEO creates an execution plan with goals, tasks, departments, and milestones.
 - The AI CEO can request clarification from the user when confidence is low or constraints are missing.
 - The AI CEO can revise plans based on new user instructions.
+- The AI CEO is the default first-line decision and clarification layer for inter-agent questions.
 
 ### 11.5 Department Agents
 - The system can instantiate specialized AI employees by department.
@@ -229,6 +234,7 @@ The user signs up with Google or email, creates a private account, and manages o
 - Users can answer clarification requests.
 - Users can change strategy, priorities, or constraints mid-process.
 - Users can choose between low-involvement mode and collaborative mode.
+- The default mode keeps user participation optional and escalates to the user only when necessary.
 
 ### 11.8 Reporting And Deliverables
 - Each department produces a report or artifact relevant to its work.
@@ -256,6 +262,13 @@ The user signs up with Google or email, creates a private account, and manages o
 - The product must establish a compliance roadmap for baseline public SaaS expectations, including privacy policy, terms of service, incident response process, and security review practices.
 - The architecture should be designed to support later compliance targets such as SOC 2 readiness, GDPR support, and region-specific privacy obligations.
 
+### 11.12 Mobile App Experience
+- The platform provides a mobile app for authenticated users.
+- Users can view mission status, milestones, and current execution phase on mobile.
+- Users can read AI CEO summaries and department reports on mobile.
+- Users can receive mobile notifications for major mission updates and report delivery.
+- Mobile access must enforce the same account isolation and authorization rules as web.
+
 ## 12. MVP Scope
 
 ### In Scope
@@ -270,6 +283,7 @@ The user signs up with Google or email, creates a private account, and manages o
 - Department reports
 - Final AI CEO summary and recommendations
 - Foundational auth, authorization, audit logging, and privacy controls
+- Mobile app support for mission status tracking and report viewing
 
 ### Out Of Scope For MVP
 - Autonomous payment handling
@@ -288,6 +302,11 @@ The user signs up with Google or email, creates a private account, and manages o
 - Pricing
 - Sign In / Start Company
 - Security
+
+### Mobile App
+- Status
+- Reports
+- Notifications
 
 ### Authenticated Product Areas
 - Dashboard
@@ -322,6 +341,9 @@ Lets the user inspect conversations between agents and add clarifications.
 ### Final Report View
 Shows the AI CEO executive summary plus department reports and recommended next actions.
 
+### Mobile Status And Reports
+Allows users to monitor mission progress and read department and CEO reports from a mobile app.
+
 ## 15. User Stories
 
 - As a solo founder, I want to submit a business goal and let AI structure the work so I do not need to act as project manager.
@@ -332,6 +354,8 @@ Shows the AI CEO executive summary plus department reports and recommended next 
 - As a user, I want each department's work preserved so I can reuse it later.
 - As a public user, I want to sign up securely with Google or email so I can access my company workspace from any device.
 - As a user, I want my company data to stay private to my account so other users cannot see my ideas, conversations, or reports.
+- As a user, I want the AI CEO to handle most clarification first so I only participate when needed.
+- As a user, I want a mobile app where I can quickly check company status and reports.
 
 ## 16. Success Metrics
 
@@ -343,6 +367,7 @@ Shows the AI CEO executive summary plus department reports and recommended next 
 - Average time from mission creation to first usable output
 - Sign-up conversion rate by auth method
 - Activation rate from registered user to first mission
+- Mobile weekly active users for status and report views
 
 ### Quality Metrics
 - User-rated usefulness of final CEO reports
