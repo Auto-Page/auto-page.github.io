@@ -1,0 +1,66 @@
+AUTO-PAGE HIGH-LEVEL COMPONENT DIAGRAM
+
++----------------------+       HTTPS        +------------------------+
+| User Browser /       | -----------------> | Public Web App         |
+| Mobile App           |                    | (Cloud Run)            |
++----------------------+                    +-----------+------------+
+                                                    |
+                                                    | login / auth
+                                                    v
+                                           +------------------------+
+                                           | Identity Provider      |
+                                           | (Google / Email)       |
+                                           +-----------+------------+
+                                                       |
+                                                       | mission requests
+                                                       v
+                                           +------------------------+
+                                           | API Service            |
+                                           | (Cloud Run)            |
+                                           +-----+----+----+---+----+
+                                                 |    |    |   |
+                                                 |    |    |   |
+                                                 |    |    |   +-------------------+
+                                                 |    |    +--------------------+   |
+                                                 |    |                         |   |
+                                                 |    +------------+            |   |
+                                                 |                 |            |   |
+                                                 v                 v            v   v
+                                         +-----------+     +---------------+  +------+------+
+                                         | Postgres  |     | Cloud Storage |  | Secret      |
+                                         | (Cloud    |     | (artifacts)   |  | Manager     |
+                                         | SQL)      |     +---------------+  +-------------+
+                                         +-----------+
+                                                 |
+                                                 | orchestration jobs
+                                                 v
+                                      +------------------------------+
+                                      | Queue / Task Broker          |
+                                      | (Pub/Sub or Cloud Tasks)     |
+                                      +--------------+---------------+
+                                                     |
+                                                     | worker tasks
+                                                     v
+                                      +------------------------------+
+                                      | AI Orchestrator Worker       |
+                                      | (Cloud Run)                  |
+                                      +--------------+---------------+
+                                                     |
+                                                     | calls LLM
+                                                     v
+                                      +------------------------------+
+                                      | LLM Provider                 |
+                                      +------------------------------+
+
+Supporting services:
+- Cloud Logging / Monitoring: logs, metrics, alerts
+- Redis / Memorystore: cache, rate limits, short-lived state
+
+Data flow summary:
+1. User opens the web app.
+2. User signs in through the identity provider.
+3. API stores mission/workspace state in Postgres.
+4. API sends orchestration jobs to the queue.
+5. AI orchestrator worker calls the LLM and generates reports.
+6. Artifacts go to Cloud Storage and status updates go back to the API.
+7. Logs and alerts are collected centrally.
